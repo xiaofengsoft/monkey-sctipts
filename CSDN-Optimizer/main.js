@@ -53,7 +53,8 @@
       '.csdn-side-toolbar',
       '.recommend-box',
       '.article-info-box',
-      '.hide-preCode-box'
+      '.hide-preCode-box',
+      '.is-traffic-img'
     ];
 
     // 删除匹配到的DOM节点
@@ -66,27 +67,16 @@
     const mainBox = document.querySelector('#mainBox');
     if (mainBox) {
       mainBox.style.marginRight = '0px'; // 修改为你需要的值
-      mainBox.style.width = '100%';
+      mainBox.style.width = '80%';
     }
     const main = document.querySelector('main');
     main.style.width = '100%';
 
-    // 处理动态加载的内容
-    const observer = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-          if (node.nodeType === 1) { // 如果是元素节点
-            selectorsToRemove.forEach(selector => {
-              if (node.matches(selector) || node.querySelector(selector)) {
-                node.remove();
-              }
-            });
-          }
-        });
-      });
-    });
-    // 监听body的子元素变化
-    observer.observe(document.body, { childList: true, subtree: true });
+    const articleContent = document.querySelector('.article_content');
+    if (articleContent) {
+      articleContent.style.overflow = 'auto';
+    }
+
   });
 
   const buttons = Array.isArray($$(".hljs-button"))
